@@ -46,7 +46,7 @@ const userSchema = new Schema({
 },{timestamps:true}) 
 
 
-
+const  passwordEncrypt = require('../helpers/passwordEncrypt')
 
 userSchema.pre(['save','updateOne'], function(next){
     // get data from 'this" when create

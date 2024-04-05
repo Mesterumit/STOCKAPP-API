@@ -1,17 +1,13 @@
 "use strict"
+// MongoDB Connection:
 
-//NodeJs Express 
-// MongoDB connection
+const {connect} = require('mongoose')
 
-const {mongoose} = require('mongoose')
-
-const dbConnection = function(){
-    mongoose.connect(process.env.MONGODB)
-    .then(()=> console.log('*DB connected'))
-    .catch((err)=> console.log('*DB not connected',err))
+module.exports = function () {
+    // Connect:
+     connect(process.env.MONGODB)
+        .then(() => console.log('* DB Connected * '))
+        .catch((err) => console.log('* DB Not Connected * ', err))
 }
 
-module.exports={
-    mongoose,
-    dbConnection
-}
+

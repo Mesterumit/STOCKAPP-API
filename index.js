@@ -1,42 +1,79 @@
 "use strict"
-
-
+require('colors');
 const express = require('express')
 const app = express()
 
-require('colors')
 
 
+/* ------------------------------------------------------- */
+// Required Modules:
+
+// envVariables to process.env:
 require('dotenv').config()
-
 const HOST = process.env?.HOST || '127.0.0.1'
-const PORT = process.env?.PORT || 8000
-const MODE = process.env?.MODE || 'production'
-console.log(PORT)
+const PORT = process.env?.PORT || 8001
 
-
-// asyncErrors to errorHandler
+// asyncErrors to errorHandler:
 require('express-async-errors')
 
+/* ------------------------------------------------------- */
+// Configrations:
 
-const {dbConnection} = require('./configs/dbConnection')
-dbConnection()
+// Connect to DB:
+require('./configs/dbConnection')()
+// dbConnection()
 
 const cors = require('cors')
 app.use(cors())
 
-// accept JSON
+/* ------------------------------------------------------- */
+// Middlewares:
+
+// Accept JSON:
 app.use(express.json())
 
+// Call static uploadFile:
+// app.use('/upload', express.static('./upload'))
 
+// Check Authentication:
+app.use(require('./middlewares/authentication'))
 
-// Run server 
-const server = app.listen(PORT, console.log(`Server running in ${MODE} mode on http://${HOST}:${PORT}`.blue.underline))
-// Handle rejections
-// process.on('unhandledRejection', (error, promise)=>{
-//     console.log(`Error: ${error.message}`.red);
-//     server.close(()=>{
-//         console.log(`Server Stopped!`.red.underline)
-//         process.exit(1);
+// Run Logger:
+// app.use(require('./middlewares/logger'))
+
+// res.getModelList():
+app.use(require('./middlewares/findSearchShortPage'))
+
+/* ------------------------------------------------------- */
+// Routes:
+
+// HomePath:
+// app.all('/', (req, res) => {
+//     res.send({
+//         error: false,
+//         message: 'Welcome to Stock Management API',
+//         documents: {
+//             swagger: '/documents/swagger',
+//             redoc: '/documents/redoc',
+//             json: '/documents/json',
+//         },
+//         user: req.user
 //     })
 // })
+
+// Routes:
+// this will default to our index.js file in the routes folder
+// app.use(require('./routes'))
+app.use(require('./routes'))
+
+/* ------------------------------------------------------- */
+
+// errorHandler:
+// app.use(require('./middlewares/errorHandler'))
+
+// RUN SERVER:
+app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
+
+/* ------------------------------------------------------- */
+// Syncronization (must be in commentLine):
+// require('./src/helpers/sync')() // !!! It clear database.
