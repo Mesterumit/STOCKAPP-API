@@ -11,7 +11,7 @@ const {mongoose,Schema} = require('mongoose')
 const TokenSchema = new Schema({
 
     user_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
         index: true,
@@ -30,7 +30,7 @@ const TokenSchema = new Schema({
 // FOR REACT PROJECT:
 TokenSchema.pre('init', function(data) {
     data.id = data._id
-    data.createds = data.createdAt.toLocaleDateString('tr-tr')
+    data.created = data.createdAt.toLocaleDateString('en-US')
 })
 /* ------------------------------------------------------- */
 module.exports = mongoose.model('Token', TokenSchema)

@@ -88,7 +88,7 @@ userSchema.pre(['save','updateOne'], function(next){
 // i am convertin "_id" to "id", so in frontend , i can call it as "id" 
 userSchema.pre('init', function(data){
     data.id = data._id
-    data.created = data.createdAt.toLocalDateString('en-US')
+    data.created = data.createdAt.toLocaleDateString('en-US')
 })
 
 module.exports= model('User',userSchema)

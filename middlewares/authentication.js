@@ -16,7 +16,9 @@ module.exports = async (req, res, next) => {
 
         } else if (tokenKey[0] == 'Bearer') { // JWT
 
-            jwt.verify(tokenKey[1], process.env.ACCESS_KEY, (err, userData) => req.user = userData)
+            const token= jwt.verify(tokenKey[1], process.env.ACCESS_KEY, (err, userData) => req.user = userData)
+            console.log("BARERR---",token)
+            return token
         }
     }
 

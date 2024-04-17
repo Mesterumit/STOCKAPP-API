@@ -23,14 +23,21 @@ module.exports = {
             `
         */
         console.log(req.user)
+        // const filters = (req.user?.is_superadmin) ? {} : { _id: req.user._id };
+        //  This line sets up a filter based on the user making the request.
+        //   If the user is a superadmin, no filter is applied,
+        //    and all User documents can be returned. If not a superadmin,
+        //     the filter restricts the documents to only the one that matches
+        //      the _id of the requesting user.
         const filters = (req.user?.is_superadmin) ? {} : { _id: req.user._id }
 
         const data = await res.getModelList(User, filters)
-
+        // console.log("USER----DATA",data)
         res.status(200).send({
             error: false,
             details: await res.getModelListDetails(User),
             data
+
         })
 
         // FOR REACT PROJECT:
