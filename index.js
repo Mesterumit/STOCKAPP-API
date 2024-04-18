@@ -39,7 +39,7 @@ app.use(express.json())
 app.use(require('./middlewares/authentication'))
 
 // Run Logger:
-// app.use(require('./middlewares/logger'))
+app.use(require('./middlewares/logger'))
 
 // res.getModelList():
 app.use(require('./middlewares/findSearchShortPage'))
@@ -69,7 +69,7 @@ app.use(require('./routes'))
 /* ------------------------------------------------------- */
 
 // errorHandler:
-// app.use(require('./middlewares/errorHandler'))
+app.use(require('./middlewares/errorHandler'))
 
 // RUN SERVER:
 app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))

@@ -1,4 +1,4 @@
-const {Schema, model, default: mongoose} = require('mongoose')
+const {Schema, model} = require('mongoose')
 
 const userSchema = new Schema({
     username : {
@@ -71,7 +71,7 @@ userSchema.pre(['save','updateOne'], function(next){
 
             if(isPasswordValidated){
                 this.password = data.password = passwordEncrypt(data.password)
-                this._update = data // udateOne will wait data from "this._update"
+                this._update = data // updateOne will wait data from "this._update"
             }else{
                 next(new Error('Password not validated'))
             }

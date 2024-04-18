@@ -13,7 +13,8 @@ const {register: useCreate} = require('../controllers/user')
 router.post('/account/register', useCreate)
 
 // user
-router.use('/users',require('./user'))
+const { list} = require('../controllers/user')
+router.use('/users',list)
 
 
 module.exports = router

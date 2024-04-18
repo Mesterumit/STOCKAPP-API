@@ -22,7 +22,7 @@ module.exports = {
                 </ul>
             `
         */
-        console.log(req.user)
+   
         // const filters = (req.user?.is_superadmin) ? {} : { _id: req.user._id };
         //  This line sets up a filter based on the user making the request.
         //   If the user is a superadmin, no filter is applied,
@@ -30,7 +30,9 @@ module.exports = {
         //     the filter restricts the documents to only the one that matches
         //      the _id of the requesting user.
         const filters = (req.user?.is_superadmin) ? {} : { _id: req.user._id }
-
+        // console.log("ID",_id)
+        console.log("req_id",req.user._id)
+        console.log("filters",filters)
         const data = await res.getModelList(User, filters)
         // console.log("USER----DATA",data)
         res.status(200).send({
@@ -41,7 +43,7 @@ module.exports = {
         })
 
         // FOR REACT PROJECT:
-        res.status(200).send(data)
+        // res.status(200).send(data)
     },
     register: async (req, res) => {
         /*
@@ -83,6 +85,66 @@ module.exports = {
             error: false,
             token: tokenData.token,
             ...data._doc
+        })
+    },
+    read: async (req, res) => {
+        /*
+            #swagger.tags = ["Users"]
+            #swagger.summary = "Get Single User"
+        */
+
+        const filters = (req.user?.is_superadmin) ? { _id: req.params.id } : { _id: req.user._id }
+
+        const data = await User.findOne(filters)
+
+        res.status(200).send({
+            error: false,
+            data
+        })
+    },
+
+    update: async (req, res) => {
+        /*
+            #swagger.tags = ["Users"]
+            #swagger.summary = "Update User"
+            #swagger.parameters['body'] = {
+                in: 'body',
+                required: true,
+                schema: {
+                    "username": "test",
+                    "password": "1234",
+                    "email": "test@site.com",
+                    "first_name": "test",
+                    "last_name": "test",
+                }
+            }
+        */
+
+        const filters = (req.user?.is_superadmin) ? { _id: req.params.id } : { _id: req.user._id }
+        req.body.is_superadmin = (req.user?.is_superadmin) ? req.body.is_superadmin : false
+
+        const data = await User.updateOne(filters, req.body, { runValidators: true })
+
+        res.status(202).send({
+            error: false,
+            data,
+            new: await User.findOne(filters)
+        })
+    },
+
+    delete: async (req, res) => {
+        /*
+            #swagger.tags = ["Users"]
+            #swagger.summary = "Delete User"
+        */
+
+        const filters = (req.user?.is_superadmin) ? { _id: req.params.id } : { _id: req.user._id }
+
+        const data = await User.deleteOne(filters)
+
+        res.status(data.deletedCount ? 204 : 404).send({
+            error: !data.deletedCount,
+            data
         })
     },
 }

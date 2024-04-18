@@ -1,7 +1,7 @@
-"use strict"
+// "use strict"
 
 const router = require('express').Router()
-/* ------------------------------------------------------- */
+// /* ------------------------------------------------------- */
 
 // const {isLogin} = require('../middlewares/permissions')
 const user = require('../controllers/user');
@@ -13,9 +13,9 @@ router.route('/')
     .post(user.register)
 
 // router.route('/:id')
-//     .get(user.read)
+//     .get(user.read) 
 //     .put(user.update)
 //     .patch(user.update)
 //     .delete(user.delete)
 
-module.exports = router;
+// module.exports = router;
