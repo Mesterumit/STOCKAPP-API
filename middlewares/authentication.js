@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
 
     const auth = req.headers?.authorization || null // Token ...tokenKey... // Bearer ...accessToken...
     const tokenKey = auth ? auth.split(' ') : null // ['Token', '...tokenKey...'] // ['Bearer', '...accessToken...']
-console.log("TONEkey",tokenKey)
+// console.log("TONEkey",tokenKey)
     if (tokenKey) {
 
         if (tokenKey[0] == 'Token') { // SimpleToken
@@ -17,8 +17,7 @@ console.log("TONEkey",tokenKey)
         } else if (tokenKey[0] == 'Bearer') { // JWT
 
             const token= jwt.verify(tokenKey[1], process.env.ACCESS_KEY, (err, userData) => req.user = userData)
-            // console.log("BARERR---",token)
-            // return token
+           
         }
     }
 
