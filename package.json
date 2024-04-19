@@ -1,18 +1,17 @@
 {
   "name": "stock-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "RESTful API for managing stock data",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Umit Mester",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "expres": "^0.0.5",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.2",

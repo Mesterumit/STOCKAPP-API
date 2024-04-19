@@ -3,10 +3,10 @@
   "info": {
     "version": "1.0.0",
     "title": "REST API",
-    "description": "",
+    "description": "RESTful API for managing stock data",
     "termsOfService": "Stock-App/UmitMester",
     "contact": {
-      "name": "",
+      "name": "Umit Mester",
       "email": "mesterumit@gmail.com"
     },
     "license": {

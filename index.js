@@ -48,18 +48,18 @@ app.use(require('./middlewares/findSearchShortPage'))
 // Routes:
 
 // HomePath:
-app.all('/', (req, res) => {
-    res.send({
-        error: false,
-        message: "Welcome to Umit's Stock Management API",
-        documents: {
-            swagger: '/documents/swagger',
-            redoc: '/documents/redoc',
-            json: '/documents/json',
-        },
-        user: req.user
-    })
-})
+// app.all('/', (req, res) => {
+//     res.send({
+//         error: false,
+//         message: "Welcome to Umit's Stock Management API",
+//         documents: {
+//             swagger: '/documents/swagger',
+//             redoc: '/documents/redoc',
+//             json: '/documents/json',
+//         },
+//         user: req.user
+//     })
+// })
 
 // Routes:
 // this will default to our index.js file in the routes folder
