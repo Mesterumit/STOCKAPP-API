@@ -33,7 +33,7 @@ app.use(cors())
 app.use(express.json())
 
 // Call static uploadFile:
-// app.use('/upload', express.static('./upload'))
+app.use('/upload', express.static('./upload'))
 
 // Check Authentication:
 app.use(require('./middlewares/authentication'))
@@ -48,18 +48,18 @@ app.use(require('./middlewares/findSearchShortPage'))
 // Routes:
 
 // HomePath:
-// app.all('/', (req, res) => {
-//     res.send({
-//         error: false,
-//         message: 'Welcome to Stock Management API',
-//         documents: {
-//             swagger: '/documents/swagger',
-//             redoc: '/documents/redoc',
-//             json: '/documents/json',
-//         },
-//         user: req.user
-//     })
-// })
+app.all('/', (req, res) => {
+    res.send({
+        error: false,
+        message: "Welcome to Umit's Stock Management API",
+        documents: {
+            swagger: '/documents/swagger',
+            redoc: '/documents/redoc',
+            json: '/documents/json',
+        },
+        user: req.user
+    })
+})
 
 // Routes:
 // this will default to our index.js file in the routes folder
@@ -76,4 +76,4 @@ app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
-// require('./src/helpers/sync')() // !!! It clear database.
+// require('./helpers/sync')() // !!! It clear database.
