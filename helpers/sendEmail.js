@@ -15,7 +15,7 @@ module.exports = function (to, subject, message) {
     const mailSettings = {
         service: 'Gmail',
         user: 'mesterumit@gmail.com',
-        pass: 'Karaagac52'
+        pass: '*******'
     }
 
     // Connect to mailServer:
