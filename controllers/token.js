@@ -26,7 +26,7 @@ module.exports = {
         /*
             #swagger.ignore = true
         */
-
+        console.log("Token ceate=========")
         const data = await Token.create(req.body)
 
         res.status(201).send({
