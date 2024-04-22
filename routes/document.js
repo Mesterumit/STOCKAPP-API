@@ -17,7 +17,7 @@ router.all('/', (req, res) => {
 
 // JSON:
 router.use('/json', (req, res) => {
-    res.sendFile(`/configs/swagger.json`, { root: '.' })
+    res.sendFile(`/src/configs/swagger.json`, { root: '.' })
 })
 
 // Redoc:
