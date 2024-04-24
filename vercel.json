@@ -7,10 +7,10 @@
       }
     ],
     "routes": [
-      {
-        "src": "/index.js",
-        "dest": "index.js"
-      }
+        {
+            "src": "/(.*)",
+            "dest": "index.js"
+          }
     ],
     "env": {
         "NODE_ENV":"production"
